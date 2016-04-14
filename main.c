@@ -5,7 +5,7 @@
 #include "test.h"
 
 /**
- * Bits de configuration:
+ * Bits de configuration
  */
 #pragma config FOSC = INTIO67   // Osc. interne, A6 et A7 comme IO.
 #pragma config IESO = OFF       // Pas d'osc. au démarrage.

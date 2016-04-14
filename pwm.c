@@ -11,7 +11,8 @@
  * @return Une valeur entre 62 et 125.
  */
 unsigned char pwmConversion(unsigned char valeurGenerique) {
-    // À implémenter...
+     int val;
+    val = (valeurGenerique*(63/255))+62;
     return 0;
 }
 

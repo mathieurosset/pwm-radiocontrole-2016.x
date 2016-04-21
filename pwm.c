@@ -3,7 +3,7 @@
 
 #define PWM_NOMBRE_DE_CANAUX 2
 #define PWM_ESPACEMENT 6
-
+static int canal1, val1;
 /**
  * Convertit une valeur signée générique vers une valeur directement
  * utilisable pour la génération PWM.
@@ -11,9 +11,9 @@
  * @return Une valeur entre 62 et 125.
  */
 unsigned char pwmConversion(unsigned char valeurGenerique) {
-     int val;
-    val = ((valeurGenerique*63)/255)+62;
-    return val;
+    int conv;
+    conv = ((valeurGenerique*63)/255)+62;
+    return conv;
 }
 
 /**
@@ -21,7 +21,6 @@ unsigned char pwmConversion(unsigned char valeurGenerique) {
  * @param canal Le numéro de canal.
  */
 void pwmPrepareValeur(unsigned char canal) {
-    int canal1;
     canal1 = canal;
       
 }
@@ -31,7 +30,6 @@ void pwmPrepareValeur(unsigned char canal) {
  * @param valeur La valeur du canal.
  */
 void pwmEtablitValeur(unsigned char valeur) {
-    int val1;
     val1 = valeur;
 }
 
@@ -83,19 +81,19 @@ void pwmReinitialise() {
 
 #ifdef TEST
 void testConversionPwm() {
-    testeEgaliteEntiers("PWMC001", pwmConversion(  0),  62);
-//    testeEgaliteEntiers("PWMC002", pwmConversion(  4),  63);
+   testeEgaliteEntiers("PWMC001", pwmConversion(  0),  62);
+// testeEgaliteEntiers("PWMC002", pwmConversion(  4),  63);
 
- //   testeEgaliteEntiers("PWMC003", pwmConversion(126),  93);
+// testeEgaliteEntiers("PWMC003", pwmConversion(126),  93);
     
    testeEgaliteEntiers("PWMC004", pwmConversion(127),  93);
-    //testeEgaliteEntiers("PWMC005", pwmConversion(128),  94);
-  //  testeEgaliteEntiers("PWMC006", pwmConversion(129),  94);
+// testeEgaliteEntiers("PWMC005", pwmConversion(128),  94);
+// testeEgaliteEntiers("PWMC006", pwmConversion(129),  94);
     
-  //  testeEgaliteEntiers("PWMC007", pwmConversion(132),  95);
+// testeEgaliteEntiers("PWMC007", pwmConversion(132),  95);
 
-   // testeEgaliteEntiers("PWMC008", pwmConversion(251), 124);
-    testeEgaliteEntiers("PWMC009", pwmConversion(255), 125);
+// testeEgaliteEntiers("PWMC008", pwmConversion(251), 124);
+   testeEgaliteEntiers("PWMC009", pwmConversion(255), 125);
 }
 void testEtablitEtLitValeurPwm() {
     pwmReinitialise();

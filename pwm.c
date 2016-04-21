@@ -3,7 +3,7 @@
 
 #define PWM_NOMBRE_DE_CANAUX 2
 #define PWM_ESPACEMENT 6
-static int canal1, val1;
+static int canalPret, valCanal[PWM_NOMBRE_DE_CANAUX];
 /**
  * Convertit une valeur signée générique vers une valeur directement
  * utilisable pour la génération PWM.
@@ -21,7 +21,7 @@ unsigned char pwmConversion(unsigned char valeurGenerique) {
  * @param canal Le numéro de canal.
  */
 void pwmPrepareValeur(unsigned char canal) {
-    canal1 = canal;
+    canalPret = canal;
       
 }
 
@@ -30,7 +30,7 @@ void pwmPrepareValeur(unsigned char canal) {
  * @param valeur La valeur du canal.
  */
 void pwmEtablitValeur(unsigned char valeur) {
-    val1 = valeur;
+    valCanal[canalPret] = valeur;
 }
 
 /**
@@ -40,7 +40,7 @@ void pwmEtablitValeur(unsigned char valeur) {
  */
 unsigned char pwmValeur(unsigned char canal) {
     // À implémenter...
-    return 0;
+    return valCanal[canal] ;
 }
 
 /**

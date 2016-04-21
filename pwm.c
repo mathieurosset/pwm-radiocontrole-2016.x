@@ -22,9 +22,8 @@ unsigned char pwmConversion(unsigned char valeurGenerique) {
  */
 void pwmPrepareValeur(unsigned char canal) {
     int canal1;
-    canal1 = canal
-    
-  
+    canal1 = canal;
+      
 }
 
 /**
@@ -32,7 +31,8 @@ void pwmPrepareValeur(unsigned char canal) {
  * @param valeur La valeur du canal.
  */
 void pwmEtablitValeur(unsigned char valeur) {
-    // À implémenter...
+    int val1;
+    val1 = valeur;
 }
 
 /**

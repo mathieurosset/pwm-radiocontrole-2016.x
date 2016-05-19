@@ -1,16 +1,23 @@
+
 #include "test.h"
 #include "pwm.h"
 
 #define PWM_NOMBRE_DE_CANAUX 2
 #define PWM_ESPACEMENT 6
-static int canalPret, valCanal[PWM_NOMBRE_DE_CANAUX];
-static int i = 0;
+static int canalPret; 
+static int valCanal[PWM_NOMBRE_DE_CANAUX];//ValPWMEnCours[2]
+static int compteurEsp = 0;  
+static unsigned int InstStart[PWM_NOMBRE_DE_CANAUX];  
+
+
 /**
  * Convertit une valeur signée générique vers une valeur directement
  * utilisable pour la génération PWM.
  * @param valeur Une valeur entre 0 et 255.
  * @return Une valeur entre 62 et 125.
  */
+
+
 unsigned char pwmConversion(unsigned char valeurGenerique) {
     int conv;
     conv = valeurGenerique*63;
@@ -55,20 +62,15 @@ unsigned char pwmValeur(unsigned char canal) {
  * @return 255 si il est temps d'émettre une pulse. 0 autrement.
  */
 unsigned char pwmEspacement() {
-    if (i >= PWM_ESPACEMENT){
-        i = 0;
-    }
-        
-    if (i == 0){
-        i++;
+    if (compteurEsp >= PWM_ESPACEMENT) {
+       compteurEsp = 0;
         return 255;
     }
-    else{
-        i++;
-        return  0;
-        
-    }
     
+    else {
+        compteurEsp++;
+        return 0;
+    }
 }
 
 /**
@@ -77,8 +79,10 @@ unsigned char pwmEspacement() {
  * @param instant Instant de démarrage de la capture.
  */
 void pwmDemarreCapture(unsigned char canal, unsigned int instant) {
-    // À implémenter...
-}
+     InstStart[canal] = instant; 
+  }  
+
+
 
 /**
  * Complète une capture PWM, et met à jour le canal indiqué.
@@ -86,14 +90,14 @@ void pwmDemarreCapture(unsigned char canal, unsigned int instant) {
  * @param instant L'instant de finalisation de la capture.
  */
 void pwmCompleteCapture(unsigned char canal, unsigned int instant) {
-    // À implémenter...
+    valCanal[canal] = instant -  InstStart[canal]; 
 }
 
 /**
  * Réinitialise le système PWM.
  */
 void pwmReinitialise() {
-    // À implémenter...
+    compteurEsp == PWM_ESPACEMENT; 
 }
 
 #ifdef TEST
